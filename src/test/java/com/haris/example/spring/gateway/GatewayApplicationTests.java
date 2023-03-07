@@ -1,0 +1,13 @@
+package com.haris.example.spring.gateway;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class GatewayApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}
