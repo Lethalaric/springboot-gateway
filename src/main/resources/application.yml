@@ -1,0 +1,18 @@
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: poke_api_01
+          uri: https://pokeapi.co
+          predicates:
+            - Path=/api/v2/pokemon/ditto
+        - id: poke_api_02
+          uri: https://pokeapi.co
+          predicates:
+            - Path=/api/v2/pokemon/*
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: fallback-002
+                fallbackUri: forward:/fallback

@@ -13,7 +13,14 @@ public class RouterConfig {
         return routeLocatorBuilder.routes()
                 .route(p -> p
                         .path("/api/v1/employees")
-                        .uri("https://dummy.restapiexample.com/")
-                ).build();
+                        .uri("https://dummy.restapiexample.com/"))
+                .route(p -> p
+                        .path("/api/v1/employees2")
+                        .filters(f -> f
+                                .circuitBreaker(config -> config
+                                        .setName("fallback-001")
+                                        .setFallbackUri("forward:/fallback"))) // forward it to /fallback when error occur
+                        .uri("https://dummy.restapiexample.com/"))
+                .build();
     }
 }
